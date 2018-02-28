@@ -24,8 +24,10 @@ const stringToList = s => {
   if (!s) return null; 
   const arr = s.split(',').reverse();
   let l = cons(arr[0], null);
-  for (let i = 1; i < arr.length; i++){
+  for (let i = 1; i < arr.length; i++) {
     l = cons(arr[i], l);
   } 
   return l;
 };
+
+//export { cons, head, tail, isEmpty, listToString, stringToList };
