@@ -12,6 +12,16 @@ const tail = list => list('tail');
 const l = () => null;
 const isEmpty = list => list === null; 
 
+const reverse = (list) => {
+    const iter = (items, acc) => {
+        if (isEmpty(items)){
+            return acc;
+        }
+        return iter(tail(items), cons(head(items), acc));
+    };
+    return iter(list, l()); 
+};
+
 const toArray = list => {
     const iter = (items, acc) => {
         if (isEmpty(items)) {
@@ -48,12 +58,45 @@ const filter = (f, list) => {
 const square = x => x * x;
 const isEven = x => x % 2 === 0;
 
-const num = cons(1, cons(2, cons(3, cons(4, cons(5, null)))));
-console.log(toArray(num));
-console.log(toString(num));
+//****************************** UNION *********************************/
+const list1 = cons(2, cons(3, cons(2, cons(1, cons(7, null)))));
+const list2 = cons(1, cons(5, cons(3, cons(5, cons(8, cons(9, null))))));
 
-const num2 = map(square, num);
-console.log(toString(num2));
+const isTwin = (elem, list) => {
+    if (isEmpty(list)){
+        return false;
+    }
+    return head(list) === elem ? true : isTwin(elem, tail(list));
+};
 
-//const num3 = filter(isEven, num2);
-//console.log(toString(num3));
+const union = (list1, list2) => {
+    if (isEmpty(list1)) {
+        return list2;
+    }
+    return cons(head(list1), union(tail(list1), list2));
+}
+
+//console.log(toString(union(list1, list2)));
+
+const unique = (list1, list2) => {
+    if (isEmpty(list1)){
+        return list2;
+    }
+    if (isTwin(head(list1), tail(list1))) {
+        return cons(head(list1), unique(tail(list1), list2));    
+    }    
+};
+
+console.log(toString(unique(list1, list2)));
+
+/*
+const unique = (list) => {
+    const iter = (items, acc) => {
+        if (isEmpty(items)){
+            return acc;
+        }
+        return isTwin(head(items), tail(items)) ? iter(tail(items), acc) : iter(tail(items), cons(head(items), acc));
+    };
+    return iter(list, l()); 
+};
+*/
