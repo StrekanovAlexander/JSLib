@@ -37,14 +37,23 @@ const map = (f, list) => {
     }
 }
 
-const square = x => x * x;
-const numbers = cons(1, cons(2, cons(3, l())));
-const sq_numbers = map(square, numbers);
-console.log(toString(numbers));
-console.log(toString(sq_numbers));
+const filter = (f, list) => {
+    if (isEmpty(list)){
+        return l();
+    } else if (f(head(list))) {
+        return cons(head(list), filter(f, tail(list)));
+    }
+    else {
+        return filter(f, tail(list));    
+    }    
+   
+}
 
-/*
-console.log(head(numbers));
-console.log(head(reverse(numbers)));
-console.log(toString(numbers));
- */
+const square = x => x * x;
+const isEven = x => x % 2 === 0;
+
+const numbers = cons(1, cons(2, cons(3, cons(4, cons(5, l())))));
+const sq_numbers = map(square, numbers);
+console.log(toString(sq_numbers));
+const sq_numbers2 = filter(isEven, numbers);
+console.log(toString(sq_numbers2));
