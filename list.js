@@ -67,3 +67,21 @@ const has = (elem, list) => {
 };
 
 const numbers = cons(1, cons(2, cons(3, cons(4, cons(5, cons(6, cons(7, null)))))));
+
+const numbers2 = cons(1, cons(2, cons(3, cons(4, cons(2, cons(6, cons(7, null)))))));
+console.log(toString(numbers2));
+
+const union = list => {
+    const iter = (items, acc) => {
+        if (isEmpty(items)) return acc;
+        if (has(head(items), acc)){
+            return iter(tail(items), acc);
+        }
+        return iter(tail(items), cons(head(items), acc)); 
+    }
+    return iter(list, null);
+}
+
+const numbers3 = union(numbers2);
+
+console.log(toString(numbers3));
