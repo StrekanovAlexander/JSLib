@@ -58,17 +58,12 @@ const reverse = list => {
         return iter(tail(items), cons(head(items), acc));
     }   
     return iter(list, null); 
-}
+};
 
-/* const numbers = cons(1, cons(2, cons(3, cons(4, cons(5, cons(6, cons(7, null)))))));
-const numbers2 = map(square, numbers);
-const numbers3 = filter(isEven, numbers); 
-const numbers4 = reduce2(isEven, null, numbers);  
-const numbers5 = reverse(numbers4);   
+const has = (elem, list) => {
+    if (isEmpty(list)) return false;
+    if (head(list) === elem) return true;
+    return has(elem, tail(list)); 
+};
 
-console.log(toString(numbers));
-console.log(toString(numbers2));
-console.log(toString(numbers3));
-console.log(toString(numbers4));
-console.log(toString(numbers5));
- */
+const numbers = cons(1, cons(2, cons(3, cons(4, cons(5, cons(6, cons(7, null)))))));
