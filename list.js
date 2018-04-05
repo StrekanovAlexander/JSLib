@@ -67,9 +67,9 @@ const has = (elem, list) => {
 };
 
 const numbers = cons(1, cons(2, cons(3, cons(4, cons(5, cons(6, cons(7, null)))))));
-
 const numbers2 = cons(1, cons(2, cons(3, cons(4, cons(2, cons(6, cons(7, null)))))));
-console.log(toString(numbers2));
+
+//console.log(toString(numbers2));
 
 const union = list => {
     const iter = (items, acc) => {
@@ -81,7 +81,3 @@ const union = list => {
     }
     return iter(list, null);
 }
-
-const numbers3 = union(numbers2);
-
-console.log(toString(numbers3));
